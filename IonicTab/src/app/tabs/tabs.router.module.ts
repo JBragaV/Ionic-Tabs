@@ -35,6 +35,24 @@ const routes: Routes = [
         ]
       },
       {
+      path: 'tab4',
+      children: [
+        {
+          path: '',
+          loadChildren: '../tab4/tab4.module#Tab4PageModule'
+        }
+      ]
+    },
+      {
+      path: 'form',
+      children: [
+        {
+          path: '',
+          loadChildren: '../form/form.module#FormPageModule'
+        }
+      ]
+    },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'
