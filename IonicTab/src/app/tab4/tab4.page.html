@@ -1,9 +1,27 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Você conseguir chegar nessa porra caraiiiii</ion-title>
+    <ion-title>Cadastro de Clientes</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-input placeholder="Enter Input"></ion-input>
+    <form>
+        <ion-item>
+          <ion-label class="form" position="floating">Nome</ion-label>
+          <ion-input type="text" placeholder="Digite seu nome" id="nome" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label class="form" position="floating">E-mail</ion-label>
+          <ion-input type="email" placeholder="Digite seu email" id="email" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label class="form" position="floating">Endereço</ion-label>
+          <ion-input type="text" placeholder="Digite seu endereço" id="endereco" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label class="form" position="floating">Senha</ion-label>
+          <ion-input type="password" placeholder="Digite seu Senha" id="password" min="5" maxlenght="5" required></ion-input>
+        </ion-item>
+        <ion-button shape="round" strong><ion-icon slot="start" name="airplane"></ion-icon>Enviar</ion-button><ion-button color="danger" shape="round"><ion-icon slot="end" name="star"></ion-icon>limpar</ion-button>
+      </form>
 </ion-content>
