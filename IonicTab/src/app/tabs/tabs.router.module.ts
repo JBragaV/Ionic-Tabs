@@ -52,6 +52,15 @@ const routes: Routes = [
         }
       ]
     },
+    {
+      path: 'servicos',
+      children: [
+        {
+          path: '',
+          loadChildren: '../servicos/servicos.module#ServicosPageModule'
+        }
+      ]
+    },
       {
         path: '',
         redirectTo: '/tabs/tab1',
