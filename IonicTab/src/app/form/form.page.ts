@@ -11,5 +11,4 @@ export class FormPage implements OnInit {
 
   ngOnInit() {
   }
-
 }
