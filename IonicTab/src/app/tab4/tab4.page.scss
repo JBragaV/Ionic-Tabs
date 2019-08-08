@@ -12,6 +12,7 @@ ion-title{
 }
 
 ion-button{
+    --background-hover: red;//teste da propriedade css... sem eficiência pra mobile
     --box-shadow: black;
     --transition: 1s;
 }

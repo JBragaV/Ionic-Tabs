@@ -5,23 +5,27 @@
 </ion-header>
 
 <ion-content>
-    <form>
-        <ion-item>
-          <ion-label class="form" position="floating">Nome</ion-label>
-          <ion-input type="text" placeholder="Digite seu nome" name="nome" id="nome" required></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label class="form" position="floating">E-mail</ion-label>
-          <ion-input type="email" placeholder="Digite seu email" name="email" id="email" required></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label class="form" position="floating">Endereço</ion-label>
-          <ion-input type="text" placeholder="Digite seu endereço" name="endereco" id="endereco" required></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label class="form" position="floating">Senha</ion-label>
-          <ion-input type="password" placeholder="Digite seu Senha" name="password" id="password" min="5" maxlenght="15" required></ion-input>
-        </ion-item>
-        <ion-button shape="round" strong><ion-icon slot="start" name="airplane"></ion-icon>Enviar</ion-button><ion-button color="danger" shape="round"><ion-icon slot="end" name="star"></ion-icon>limpar</ion-button>
-      </form>
+  <form [formGroup] = "formulario">
+    <ion-item>
+      <ion-label class="form" position="floating">Nome</ion-label>
+      <ion-input formControlName="nome" type="text" placeholder="Digite seu nome" name="nome" id="nome" required></ion-input>
+    </ion-item>
+    <h6 *ngIf="errorNome" class="error"> {{msgNome}}</h6>
+    <ion-item>
+      <ion-label class="form" position="floating">E-mail</ion-label>
+      <ion-input type="text" formControlName="email" placeholder="Digite seu email" name="email" id="email" required></ion-input>
+    </ion-item>
+    <h6 *ngIf="errorEmail" class="error"> {{msgEmail}}</h6>
+    <ion-item>
+      <ion-label class="form" position="floating">Endereço</ion-label>
+      <ion-input type="text" formControlName="endereco" placeholder="Digite seu endereço" name="endereco" id="endereco" required></ion-input>
+    </ion-item>
+    <h6 *ngIf="errorEndereco" class="error"> {{msgEndereco}}</h6>
+    <ion-item>
+      <ion-label class="form" position="floating">Senha</ion-label>
+      <ion-input type="password" formControlName="password" placeholder="Digite seu Senha" name="password" id="password" min="5" maxlenght="15" required></ion-input>
+    </ion-item>
+    <h6 *ngIf="errorPass" class="error"> {{msgPass}}</h6>
+    <ion-button (click)="logar()" shape="round"  strong><ion-icon slot="start" name="airplane"></ion-icon>Enviar</ion-button><ion-button color="danger" shape="round"><ion-icon slot="end" name="star"></ion-icon>limpar</ion-button>
+  </form>
 </ion-content>
