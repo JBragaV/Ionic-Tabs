@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Seção 1: Aeronave e Sistemas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <h3>Generalidades</h3>
+  <p>Fabricado pela Aeronautical Industry Piper Arcraft (PA-34), a aeronave Seneca I é um bimotor de asa baixa, estrutura 
+    inteiramente metálica e trem de pouso de pouso do tipo retrátil.</p>
+  <p>Possui acomodalção para 6 ocupantes e é utilizada para instrução priária de voo.</p>
+  <p>Homologado para voos <strong><a href="tabs/tab2">VFR</a></strong> e <strong><a>IFR</a></strong> diurno e noturno.</p>
+  <h3>Dimensões</h3>
+  <table id="tbl">
+    <tr>
+      <th *ngFor="let snc of dimensoes" id="RowTitleTable">{{snc}}</th>
+    </tr>
+    <tr>
+      <td *ngFor="let cpt of comprimentos" id="RowDataTable">{{cpt}}</td>
+    </tr>
+  </table>
+  <img src="../assets/seneca/dimensoes.jpg">
+  
+</ion-content>
+<ion-button size="large" slots="end" (click)="fecharMdl()">Fechar</ion-button>
