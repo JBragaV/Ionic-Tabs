@@ -16,10 +16,10 @@ export class EnginePage implements OnInit {
 
   ngOnInit() {
   }
-  async popOver(ev: Event){
+  async popOver(){
     const pop = await this.popoverController.create({
       component: FotoFuelPage,
-      event: ev
+
     })
     return pop.present();
   }

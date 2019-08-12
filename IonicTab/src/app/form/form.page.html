@@ -5,23 +5,27 @@
 </ion-header>
 
 <ion-content>
-  <form>
+  <form [formGroup] = "proForm" (submit)="add()">
     <ion-item>
       <ion-label class="form" position="floating">Nome</ion-label>
-      <ion-input type="text" placeholder="Digite seu nome" id="nome" required></ion-input>
+      <ion-input type="text" formControlName="nome" placeholder="Digite seu nome" id="nome"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label class="form" position="floating">E-mail</ion-label>
-      <ion-input type="email" placeholder="Digite seu email" id="email" required></ion-input>
+      <ion-input type="email" formControlName="email" placeholder="Digite seu email" id="email"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label class="form" position="floating">Endereço</ion-label>
-      <ion-input type="text" placeholder="Digite seu endereço" id="endereco" required></ion-input>
+      <ion-input type="text" formControlName="endereco" placeholder="Digite seu endereço" id="endereco"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label class="form" position="floating">Senha</ion-label>
-      <ion-input type="password" placeholder="Digite seu Senha" id="password" min="5" maxlenght="5" required></ion-input>
+      <ion-input type="password" formControlName="password" placeholder="Digite seu Senha" id="password" ></ion-input>
     </ion-item>
-    <ion-button (click)="apareceae()" shape="round"><ion-icon slot="start" name="airplane"></ion-icon>Enviar</ion-button><ion-button  shape="round"><ion-icon slot="end" name="star"></ion-icon>limpar</ion-button>
+<ion-item>
+  <ion-label>MM DD YY</ion-label>
+  <ion-datetime formControlName="data" displayFormat="MM DD YY" placeholder="Select Date"></ion-datetime>
+</ion-item>
+    <ion-button type="submit" shape="round"><ion-icon slot="start" name="airplane"></ion-icon>Enviar</ion-button><ion-button (click)="apareceae()" shape="round"><ion-icon slot="end" name="star"></ion-icon>limpar</ion-button>
   </form>
 </ion-content>

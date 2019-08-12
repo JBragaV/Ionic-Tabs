@@ -3,5 +3,6 @@ export interface profissional{
     email: string,
     endereco: string,
     senha: string,
-    tipoServico: string
+    tipoServico: string,
+    data: number
 }

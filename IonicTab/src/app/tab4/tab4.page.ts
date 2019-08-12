@@ -29,23 +29,23 @@ export class Tab4Page implements OnInit {
 
   ngOnInit():void {
     this.formulario =this.formBilder.group({
-      nome:["o", [Validators.required, Validators.maxLength(35), Validators.minLength(2)]],
-      email:["i", [Validators.required, Validators.email, Validators.maxLength(40)]],
-      endereco:["p", [Validators.required, Validators.maxLength(100)]],
-      password:["m", Validators.compose([
+      nome:["", [Validators.required, Validators.maxLength(35), Validators.minLength(2)]],
+      email:["", [Validators.required, Validators.email, Validators.maxLength(40)]],
+      endereco:["", [Validators.required, Validators.maxLength(100)]],
+      password:["", Validators.compose([
           Validators.minLength(4), 
           Validators.maxLength(20), 
           Validators.required
         ])]
-    }, {updateOn: 'blur'})
+    })
   }
   
   add(){
     //enviar para os serviços.
     /*Resgatando os valores dos campos e fazendo i, cast(conversão)para o modelo)template Cliente*/
     const novoCliente = this.formulario.getRawValue() as cliente;
-
-    this.clienteService.addCliente(novoCliente).subscribe(() => this.arota.navigateByUrl("ainda não sei"),
+ 
+    this.clienteService.addCliente(novoCliente).subscribe(() => this.arota.navigateByUrl("tabs/tab4"),
                                   error => {
                                     console.log(error);
                                     this.formulario.reset();
