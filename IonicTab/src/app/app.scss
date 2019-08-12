@@ -4,3 +4,28 @@
 // styles are for the entire app and not just one component. Additionally, this 
 // file can hold Sass mixins, functions, and placeholder classes to be imported 
 // and used throughout the application.
+table#tbl{
+    width: 100%;
+}
+table#tbl, th#RowTitleTable, td#RowDataTable {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+strong#danger, p#danger{
+    color: red;
+}
+p{
+    text-align: justify;
+}
+td#dados{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+div#capitulo{
+    border-bottom: 1px solid black;
+    border-collapse: collapse;
+}
+#titulo{
+    background-color: blue;
+    color: white
+}

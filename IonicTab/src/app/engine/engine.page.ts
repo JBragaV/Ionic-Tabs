@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, PopoverController } from '@ionic/angular';
+import { FotoFuelPage } from './foto-fuel/foto-fuel.page';
 
 @Component({
   selector: 'app-engine',
@@ -8,13 +9,20 @@ import { ModalController } from '@ionic/angular';
 })
 export class EnginePage implements OnInit {
 
-  dimensoes = ["Envergadura", "Altura", "Comprimento"]
-  comprimentos = ["11,85m", "3,00m", "8,70m"]
-  constructor(private modalController: ModalController) { }
+  dimensoes = ["Comprimento", "Altura", "Envergadura"]
+  comprimentos = ["8,70m", "3,00m", "11,85m"]
+
+  constructor(private modalController: ModalController, private popoverController: PopoverController) { }
 
   ngOnInit() {
   }
-
+  async popOver(ev: Event){
+    const pop = await this.popoverController.create({
+      component: FotoFuelPage,
+      event: ev
+    })
+    return pop.present();
+  }
   fecharMdl(){
     this.modalController.dismiss()
   }
