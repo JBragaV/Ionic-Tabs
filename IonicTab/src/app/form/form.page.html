@@ -22,10 +22,15 @@
       <ion-label class="form" position="floating">Senha</ion-label>
       <ion-input type="password" formControlName="password" placeholder="Digite seu Senha" id="password" ></ion-input>
     </ion-item>
-<ion-item>
-  <ion-label>MM DD YY</ion-label>
-  <ion-datetime formControlName="data" displayFormat="MM DD YY" placeholder="Select Date"></ion-datetime>
-</ion-item>
+    <ion-item>
+      <ion-label class="form" position="floating">Data de nascimento</ion-label>
+      <ion-datetime value="{{vlr | date: dd-MM-yyyy}}" displayFormat="DD MM YY" placeholder="Select Date"></ion-datetime>
+    </ion-item>
     <ion-button type="submit" shape="round"><ion-icon slot="start" name="airplane"></ion-icon>Enviar</ion-button><ion-button (click)="apareceae()" shape="round"><ion-icon slot="end" name="star"></ion-icon>limpar</ion-button>
   </form>
-</ion-content>
+ <!-- <ion-item>
+    <ion-label class="form" position="floating">Data de nascimento</ion-label>
+    <ion-datetime value="{{vlr | date: dd-MM-yyyy}}" displayFormat="DD MM YY" placeholder="Select Date"></ion-datetime>
+  </ion-item>
+  <ion-button type="submit" (click)="apareceae()" shape="round"><ion-icon slot="start" name="airplane"></ion-icon>Enviar</ion-button>
+--></ion-content>

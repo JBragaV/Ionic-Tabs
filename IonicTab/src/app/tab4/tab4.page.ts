@@ -17,10 +17,13 @@ export class Tab4Page implements OnInit {
   msgEmail = "";
   msgEndereco = "";
   msgPass = "";
+  msgData = "";
   errorNome = false;
   errorEmail = false;
   errorEndereco = false;
   errorPass = false;
+  errorData = false;
+  
 
   constructor(private formBilder:FormBuilder, 
               private clienteService: ClienteService,
@@ -36,24 +39,25 @@ export class Tab4Page implements OnInit {
           Validators.minLength(4), 
           Validators.maxLength(20), 
           Validators.required
-        ])]
+        ])],
+      data:["", Validators.required]
     })
   }
   
   add(){
     //enviar para os serviços.
     /*Resgatando os valores dos campos e fazendo i, cast(conversão)para o modelo)template Cliente*/
+    console.log(this.formulario.value)
     const novoCliente = this.formulario.getRawValue() as cliente;
  
     this.clienteService.addCliente(novoCliente).subscribe(() => this.arota.navigateByUrl("tabs/tab4"),
-                                  error => {
-                                    console.log(error);
-                                    this.formulario.reset();
-                                  })
+                                                          error => { console.log(error);  }
+                                                          )
+    this.formulario.reset();
   }
   logar(){
-    console.log(this.formulario.value)
-    let {nome, email, endereco, password} = this.formulario.controls;
+    
+    let {nome, email, endereco, password, data} = this.formulario.controls;
     if(!this.formulario.valid){
       if(!nome.valid){
         this.errorNome = true;
@@ -77,7 +81,12 @@ export class Tab4Page implements OnInit {
         this.errorPass = true;
         this.msgPass = "Insira uma senha entre 4 e 20 caracteres!"
       }
+      if(!data.valid){
+        this.errorData = true;
+        this.msgData = "Insira uma data!"
+      }
     }else{
+      console.log("cheguei aqui")
       this.add();
     }
   }

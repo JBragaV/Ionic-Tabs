@@ -12,13 +12,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { EnginePageModule } from './engine/engine.module';
 import { FotoFuelPageModule } from './engine/foto-fuel/foto-fuel.module';
 import { Secao2PageModule } from './secao2/secao2.module';
+import { Secao3PageModule } from './secao3/secao3.module';
 
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [HttpClientModule, BrowserModule, IonicModule.forRoot(), AppRoutingModule, EnginePageModule, FotoFuelPageModule,
-            Secao2PageModule ],
+            Secao2PageModule, Secao3PageModule ],
   providers: [
     StatusBar,
     SplashScreen,

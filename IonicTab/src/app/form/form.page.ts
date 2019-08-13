@@ -13,25 +13,40 @@ import { profissional } from '../models/profissional.models';
 })
 export class FormPage implements OnInit {
   proForm: FormGroup
+  //Variável de teste.
+  msgNome = "";
+  msgEmail = "";
+  msgEndereco = "";
+  msgPass = "";
+  msgData = "";
+  errorNome = false;
+  errorEmail = false;
+  errorEndereco = false;
+  errorPass = false;
+  erroData = false;
 
+  vlr: Date = new Date();
+  dia = this.vlr.getDate().toString()
+  mes = this.vlr.getMonth().toString()
+  ano = this.vlr.getFullYear().toString()
+  completo = `${this.dia}/${this.mes}/${this.ano}`
   constructor(private alertController: AlertController,
               private formBilder: FormBuilder,
               private profissionalService: ProfissionalService,
               private arota: Router) { }
 
-  ngOnInit() {
+  ngOnInit():void {
     this.proForm =this.formBilder.group({
-      nome:["", [Validators.required, Validators.maxLength(35), Validators.minLength(2)]],
-      email:["", [Validators.required, Validators.email, Validators.maxLength(40)]],
-      endereco:["", [Validators.required, Validators.maxLength(100)]],
-      password:["", Validators.compose([
-          Validators.minLength(4), 
-          Validators.maxLength(20), 
-          Validators.required
-        ])],
+        nome:["", [Validators.required, Validators.maxLength(35), Validators.minLength(2)]],
+        email:["", [Validators.required, Validators.email, Validators.maxLength(40)]],
+        endereco:["", [Validators.required, Validators.maxLength(100)]],
+        password:["", Validators.compose([
+            Validators.minLength(4), 
+            Validators.maxLength(20), 
+            Validators.required
+          ])],
         data:["", Validators.required]
     })
-   
   }
 
   add(){
@@ -48,14 +63,45 @@ export class FormPage implements OnInit {
     )
   }
 
+  logar(){
+  
+    let {nome, email, endereco, password} = this.proForm.controls;
+    if(!this.proForm.valid){
+      if(!nome.valid){
+        this.errorNome = true;
+        this.msgNome = "Insira um nome no campo acima!"
+      }else{
+        this.msgNome = "";
+      }
+      if(!email.valid){
+        this.errorEmail = true;
+        this.msgEmail = "Insira um e-mail válido no campo acima!"
+      }else{
+        this.msgEmail = ""
+      }
+      if(!endereco.valid){
+        this.errorEndereco = true;
+        this.msgEndereco = "Insira um endereço no campo acima!"
+      }else{
+        this.msgEndereco = "";
+      }
+      if(!password.valid){
+        this.errorPass = true;
+        this.msgPass = "Insira uma senha entre 4 e 20 caracteres!"
+      }
+    }else{
+      console.log("cheguei aqui")
+      this.add();
+    }
+  }
   async apareceae(){
-    var dt = new Date()
-    var hora = dt.getHours()
-    console.log(hora)
+
+    console.log(this.completo)
+    //let stDt = this.vlr.toISOString()
     const alert = await this.alertController.create({
       header: "Alerta",
       subHeader: "Sub título da bagaça",
-      message: "Ok",
+      message: this.completo,
       buttons: ["OK"]
     })
     alert.present();

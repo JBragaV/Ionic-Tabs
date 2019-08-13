@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { EnginePage } from '../engine/engine.page';
 import { Secao2Page } from '../secao2/secao2.page';
+import { Secao3Page } from '../secao3/secao3.page';
 
 @Component({
   selector: 'app-tab2',
@@ -21,6 +22,18 @@ export class Tab2Page {
   async mdlSc2(){
     const modal = await this.modalController.create({
       component: Secao2Page
+    });
+    return modal.present();
+  }
+  async mdlSc3(){
+    const modal = await this.modalController.create({
+      component: Secao3Page
+    });
+    return modal.present();
+  }
+  async mdlSc4(){
+    const modal = await this.modalController.create({
+      component: Secao3Page
     });
     return modal.present();
   }
