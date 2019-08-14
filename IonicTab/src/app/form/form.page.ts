@@ -13,6 +13,7 @@ import { profissional } from '../models/profissional.models';
 })
 export class FormPage implements OnInit {
   proForm: FormGroup
+  testeForm: string
   //Variável de teste.
   msgNome = "";
   msgEmail = "";
@@ -30,6 +31,8 @@ export class FormPage implements OnInit {
   mes = this.vlr.getMonth().toString()
   ano = this.vlr.getFullYear().toString()
   completo = `${this.dia}/${this.mes}/${this.ano}`
+  
+  
   constructor(private alertController: AlertController,
               private formBilder: FormBuilder,
               private profissionalService: ProfissionalService,
@@ -37,15 +40,15 @@ export class FormPage implements OnInit {
 
   ngOnInit():void {
     this.proForm =this.formBilder.group({
-        nome:["", [Validators.required, Validators.maxLength(35), Validators.minLength(2)]],
-        email:["", [Validators.required, Validators.email, Validators.maxLength(40)]],
-        endereco:["", [Validators.required, Validators.maxLength(100)]],
-        password:["", Validators.compose([
-            Validators.minLength(4), 
-            Validators.maxLength(20), 
-            Validators.required
-          ])],
-        data:["", Validators.required]
+      nome:["", [Validators.required, Validators.maxLength(35), Validators.minLength(2)]],
+      email:["", [Validators.required, Validators.email, Validators.maxLength(40)]],
+      endereco:["", [Validators.required, Validators.maxLength(100)]],
+      password:["", Validators.compose([
+        Validators.minLength(4), 
+        Validators.maxLength(20), 
+        Validators.required
+      ])],
+      data:["", Validators.required]
     })
   }
 
@@ -53,18 +56,16 @@ export class FormPage implements OnInit {
     const novoProfissional = this.proForm.getRawValue() as profissional
     console.log(novoProfissional)
     this.profissionalService.AddProf(novoProfissional).subscribe(() =>{
-      this.arota.navigateByUrl("ainda não sei de novo"), 
+      this.arota.navigateByUrl(""), 
       error =>{
         console.log(error),
         this.proForm.reset()
-      }
-      
+      }    
     }
     )
   }
 
-  logar(){
-  
+  logar(){  
     let {nome, email, endereco, password} = this.proForm.controls;
     if(!this.proForm.valid){
       if(!nome.valid){
@@ -105,5 +106,11 @@ export class FormPage implements OnInit {
       buttons: ["OK"]
     })
     alert.present();
+  }
+
+  pegar(pro: string){
+    console.log(pro)
+    const profBD = this.profissionalService.getProf()
+    console.log(profBD)
   }
 }
