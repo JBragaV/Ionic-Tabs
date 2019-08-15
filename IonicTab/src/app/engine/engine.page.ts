@@ -12,7 +12,8 @@ export class EnginePage implements OnInit {
   dimensoes = ["Comprimento", "Altura", "Envergadura"]
   comprimentos = ["8,70m", "3,00m", "11,85m"]
 
-  constructor(private modalController: ModalController, private popoverController: PopoverController) { }
+  constructor(private modalController: ModalController, private popoverController: PopoverController) { 
+  }
 
   ngOnInit() {
   }
@@ -26,4 +27,5 @@ export class EnginePage implements OnInit {
   fecharMdl(){
     this.modalController.dismiss()
   }
+
 }
