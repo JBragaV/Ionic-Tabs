@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">Peso e Balanceamento</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form >
+    <ion-item>
+      <ion-label class="form" position="floating">Peso ????</ion-label>
+      <ion-input type="number" (keyup)="valor1 = $event.target.value"  placeholder="Digite seu nome" id="nome"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label class="form" position="floating">E-mail</ion-label>
+      <ion-input type="number" (keyup)="valor2 = $event.target.value" placeholder="Digite seu email" id="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label class="form" position="floating">Resultado</ion-label>
+      <ion-input type="text" disabled [value] = "res" placeholder="Digite seu endereço" id="endereco"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label class="form" position="floating">Senha</ion-label>
+      <ion-input type="password"  placeholder="Digite seu Senha" id="password" ></ion-input>
+    </ion-item>
+    <ion-button (click)="conc(valor1, valor2)" shape="round"><ion-icon slot="start" name="airplane"></ion-icon>Enviar</ion-button><ion-button (click)="limpa()" shape="round"><ion-icon slot="end" name="star"></ion-icon>limpar</ion-button>
+  </form>
+</ion-content>
