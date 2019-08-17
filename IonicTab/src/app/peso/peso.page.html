@@ -6,6 +6,7 @@
 <ion-content padding>
   <form >
     <div id="capitulo">
+      <h1>Calculo de Autonomia</h1>
       <ion-item>
         <ion-label class="form" position="floating">Etapa</ion-label>
         <ion-input type="number" (keyup)="etapa = $event.target.value" placeholder="Digite seu nome" id="etapa"></ion-input>
@@ -28,11 +29,13 @@
       </ion-item>
       <ion-item>
           <ion-label class="form" position="floating">Total a Bordo</ion-label>
-          <ion-input type="number" [value]="totBord" disabled value="valor1"  placeholder="Digite seu nome"></ion-input>
+          <ion-input type="number" [value]="totBord" disabled value="valor1" id="totalBordo" placeholder="Digite seu nome"></ion-input>
+          <span *ngIf="cobustivel" id="danger">Limite do combustivel é 370L</span>
       </ion-item>
       <ion-button (click)="vml(etapa, alternado, reserva, adicional)" shape="round"><ion-icon slot="start" name="airplane"></ion-icon>Botão teste</ion-button>
     </div>
     <div id="capitulo">
+      <h1>Calculo de Peso de Decolagem</h1>
     <ion-item>
       <ion-label class="form" position="floating">Peso máximo de decolagem(Kg)</ion-label>
       <ion-input type="number" (keyup)="valor1 = $event.target.value" value="valor1"  placeholder="Digite seu nome" id="nome"></ion-input>
@@ -55,14 +58,16 @@
     </ion-item>
     <ion-item>
       <ion-label class="form" position="floating">Payload máximo</ion-label>
-      <ion-input type="number" [value]="combMinp" disabled placeholder="Digite seu Senha" id="cmp" ></ion-input>
+      <ion-input type="number" [value]="combMinp" disabled placeholder="Digite seu Senha" id="payLoad" ></ion-input>
+      <span *ngIf="payLoad" id="danger">Peso fora do padrão</span>
     </ion-item>
-    <ion-button (click)="conc(valor1, valor2, combMin, pesTripuPax)" shape="round"><ion-icon slot="start" name="airplane"></ion-icon>Enviar</ion-button><ion-button (click)="limpa()" shape="round"><ion-icon slot="end" name="star"></ion-icon>limpar</ion-button>
+    <ion-button [disabled] = "erroFuel" (click)="conc(valor1, valor2, combMin, pesTripuPax)" shape="round"><ion-icon slot="start" name="airplane"></ion-icon>Enviar</ion-button><ion-button (click)="limpa()" shape="round"><ion-icon slot="end" name="star"></ion-icon>limpar</ion-button>
   </div>
   <div id="capitulo">
+    <h1>Calculo de Peso e Balanceamento</h1>
     <ion-item>
       <ion-label class="form" position="floating">Peso Básico Vazio</ion-label>
-      <ion-input type="number" disabled [value] = "valor2" placeholder="Digite seu email" id="email"></ion-input>
+      <ion-input type="number" [disabled]="arara" [value] = "valor2" placeholder="Digite seu email" id="email"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label class="form" position="floating">Ocupantes poltronas dianteira</ion-label>
@@ -104,7 +109,7 @@
       <ion-label class="form" position="floating">Peso Máximo de Pouso*</ion-label>
       <ion-input type="number" disabled [value] = "pap" placeholder="Digite seu email" id="email"></ion-input>
     </ion-item>
-    <ion-button (click)="bal(valor2, pd, pc, pt, bd, btr, etapa)" shape="round"><ion-icon slot="start" name="airplane"></ion-icon>Enviar</ion-button>
+    <ion-button [disabled]="erroPeso" (click)="bal(valor2, pd, pc, pt, bd, btr, etapa)" shape="round"><ion-icon slot="start" name="airplane"></ion-icon>Enviar</ion-button>
   </div>
   </form>
 </ion-content>
