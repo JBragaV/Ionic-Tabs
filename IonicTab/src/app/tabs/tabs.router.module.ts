@@ -43,6 +43,15 @@ const routes: Routes = [
         }
       ]
     },
+    {
+      path: 'peso',
+      children: [
+        {
+          path: '',
+          loadChildren: '../peso/peso.module#PesoPageModule'
+        }
+      ]
+    },
       {
         path: '',
         redirectTo: '/tabs/tab1',
