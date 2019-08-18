@@ -15,7 +15,11 @@ export class PesoPage implements OnInit {
 
   payLoad = false //
   cobustivel = false //
-  
+  pesoMaximoPouso = false//
+  cGd = false//
+  cGp = false//
+  ok = false//
+
   arara = true //teste
   
   @Input() minReq // Mínimo requerido
@@ -29,7 +33,7 @@ export class PesoPage implements OnInit {
   @Input() pad //Peso Atual de decolagem
   @Input() combEtap //Combustível queimado na etapa
   @Input() pap //Peso atual de pouso
-  
+  @Input() centrogravidade
   //pesoMaior = false
   constructor(private formBiulder: FormBuilder) { }
 
@@ -99,7 +103,7 @@ export class PesoPage implements OnInit {
     + (Number(this.pesComb.replace(",", ".")))*2.38)
     
     let cgd = (numDep/this.pad).toFixed(3)
-    
+    this.centrogravidade = cgd.toString().replace(".", ",")
     //Centro de gravidade no pouso
     
     let numPouso =((Number(pbv.replace(",", "."))*2.252) + (Number(pd.replace(",", "."))*2.172) + (Number(pc.replace(",", "."))*3)
@@ -110,11 +114,25 @@ export class PesoPage implements OnInit {
     //console.log(`O centro de gravidade na: Peso de decolagem é ${cgd} e no pouso é ${cgp}`)  
     //Iniciar as "analises dos valores. Centro de gravidade e peso"
 
+    if(this.pap > 1814){
+      this.pesoMaximoPouso = true
+      document.getElementById("pesPouso").style.color = "red"
+    }else{
+      this.pesoMaximoPouso = false
+      document.getElementById("pesPouso").style.color = "black"
+    }
+    if(Number(cgd) > 2.402 || Number(cgd) < 2.049){
+      this.cGd = true
+      this.ok = false
+    }else{
+        this.cGd = false
+        this.ok = true
+    }
   }
 
   //A implementar
   limpa(){
-    console.log("Vou limpar depois isso!!!")
+    
   }
 
   
