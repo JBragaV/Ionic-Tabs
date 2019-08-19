@@ -3,6 +3,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ClienteService } from '../service/cliente.service';
 import { cliente } from '../models/cliente.models';
+import { getTemplateContent } from '@angular/core/src/sanitization/html_sanitizer';
+import { promise } from 'protractor';
 
 
 @Component({
@@ -13,8 +15,6 @@ import { cliente } from '../models/cliente.models';
 export class Tab4Page implements OnInit {
 
   public cliente: cliente[]
-
-  public daTa: string
 
   public formulario:any;
   msgNome = "";
@@ -30,9 +30,13 @@ export class Tab4Page implements OnInit {
   
 
   constructor(private formBilder:FormBuilder, 
-              private clienteService: ClienteService,
-              private arota: Router
-    ) { }
+    private clienteService: ClienteService,
+    private arota: Router
+  ) { }
+  
+  sobe(){
+    document.querySelector("ion-content").scrollToTop(500) 
+  }
 
   ngOnInit():void {
     this.formulario =this.formBilder.group({
@@ -59,7 +63,6 @@ export class Tab4Page implements OnInit {
                                                           error => { console.log(error);  }
                                                           )
     this.formulario.reset();
-    console.log(this.daTa.valueOf())
     //window.location.reload();
   }
 
@@ -99,7 +102,6 @@ export class Tab4Page implements OnInit {
         this.msgData = "Insira uma data!"
       }
     }else{
-      console.log("cheguei aqui")
       this.add();
     }
   }
