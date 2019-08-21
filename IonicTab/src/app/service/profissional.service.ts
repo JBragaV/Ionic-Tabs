@@ -21,7 +21,7 @@ export class ProfissionalService {
     return this.http.post(`${API_URL}/profissional`, prof, httpOptions)
   }
 
-  getProf(){//?email=${email}email: string
+  getAllProf(){//?email=${email}email: string
     return this.http.get<profissional[]>(`${API_URL}/profissional`, httpOptions)
   }
 

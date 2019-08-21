@@ -35,7 +35,7 @@ export class Tab4Page implements OnInit {
   ) { }
   
   sobe(){
-    document.querySelector("ion-content").scrollToTop(500) 
+    document.querySelector("ion-content").scrollToTop(50) 
   }
 
   ngOnInit():void {
@@ -53,7 +53,7 @@ export class Tab4Page implements OnInit {
     this.pegarCliente();
   }
   
-  add(){
+  async add(){
     //enviar para os serviços.
     /*Resgatando os valores dos campos e fazendo i, cast(conversão)para o modelo)template Cliente*/
     console.log(this.formulario.value)
@@ -63,7 +63,7 @@ export class Tab4Page implements OnInit {
                                                           error => { console.log(error);  }
                                                           )
     this.formulario.reset();
-    //window.location.reload();
+    await window.location.reload();
   }
 
   pegarCliente(){

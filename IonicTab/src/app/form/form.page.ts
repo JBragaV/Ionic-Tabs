@@ -14,6 +14,8 @@ import { profissional } from '../models/profissional.models';
 export class FormPage implements OnInit {
   proForm: FormGroup
   testeForm: string
+
+  private profissionais: profissional[]
   //Variável de teste.
   msgNome = "";
   msgEmail = "";
@@ -50,19 +52,30 @@ export class FormPage implements OnInit {
       ])],
       data:["", Validators.required]
     })
+    this.pegarTodos()
+   
+  }
+
+  pegarTodos(){
+    this.profissionalService.getAllProf().subscribe(
+      profDB => this.profissionais = profDB,
+      Erro => console.log(Erro)
+    )
   }
 
   add(){
+    //console.log("entrei aqui no add")
     const novoProfissional = this.proForm.getRawValue() as profissional
     console.log(novoProfissional)
     this.profissionalService.AddProf(novoProfissional).subscribe(() =>{
-      this.arota.navigateByUrl(""), 
+      this.arota.navigateByUrl("tabs/form"), 
       error =>{
         console.log(error),
         this.proForm.reset()
       }    
     }
     )
+    window.location.reload()
   }
 
   logar(){  
@@ -91,7 +104,8 @@ export class FormPage implements OnInit {
         this.msgPass = "Insira uma senha entre 4 e 20 caracteres!"
       }
     }else{
-      console.log("cheguei aqui")
+      //alert("Cheguei aqui")
+      //console.log("cheguei aqui")
       this.add();
     }
   }
@@ -108,9 +122,9 @@ export class FormPage implements OnInit {
     alert.present();
   }
 
-  pegar(pro: string){
+  /*pegar(pro: string){
     console.log(pro)
     const profBD = this.profissionalService.getProf()
     console.log(profBD)
-  }
+  }*/
 }
