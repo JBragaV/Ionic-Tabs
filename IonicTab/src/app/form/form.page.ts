@@ -78,6 +78,17 @@ export class FormPage implements OnInit {
     window.location.reload()
   }
 
+  deletar(id: string){
+    
+    this.profissionalService.delete(id).subscribe(() =>{
+      this.arota.navigateByUrl("tabs/form"), 
+      error =>{
+        console.log(error)
+      }    
+    }
+    )
+  }
+
   logar(){  
     let {nome, email, endereco, password} = this.proForm.controls;
     if(!this.proForm.valid){
