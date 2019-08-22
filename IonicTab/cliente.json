@@ -17,14 +17,5 @@
       "id": 2
     }
   ],
-  "profissional": [
-    {
-      "nome": "João Doidão",
-      "email": "doido@xn--maneiro-9xa.com",
-      "endereco": "Hospício bem perto",
-      "password": "123456789",
-      "data": "",
-      "id": 1
-    }
-  ]
+  "profissional": []
 }

@@ -28,4 +28,8 @@ export class ProfissionalService {
   upDateProf(prof: profissional){
     return this.http.post(`${API_URL}/profissional`, prof, httpOptions)
   }
+  
+  delete(id:string){
+    return this.http.delete(`${API_URL}/profissional/${id}`, httpOptions)
+  }
 }
