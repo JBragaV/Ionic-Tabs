@@ -12,35 +12,21 @@ import { profissional } from '../models/profissional.models';
   styleUrls: ['./form.page.scss'],
 })
 export class FormPage implements OnInit {
-  proForm: FormGroup
-  testeForm: string
-
-  private profissionais: profissional[]
-  //Variável de teste.
-  msgNome = "";
-  msgEmail = "";
-  msgEndereco = "";
-  msgPass = "";
-  msgData = "";
-  errorNome = false;
-  errorEmail = false;
-  errorEndereco = false;
-  errorPass = false;
-  erroData = false;
-
-  vlr: Date = new Date();
-  dia = this.vlr.getDate().toString()
-  mes = this.vlr.getMonth().toString()
-  ano = this.vlr.getFullYear().toString()
-  completo = `${this.dia}/${this.mes}/${this.ano}`
   
+  private profissionais: profissional[]
+  
+  private servicos = ["Manutenção", "Design", "Coração", "Comunista", "Formatação"]
+   
+  svc = false
   
   constructor(private alertController: AlertController,
-              private formBilder: FormBuilder,
-              private profissionalService: ProfissionalService,
-              private arota: Router) { }
-
+    private formBilder: FormBuilder,
+    private profissionalService: ProfissionalService,
+    private arota: Router) { }
+    
+  proForm: FormGroup
   ngOnInit():void {
+    document.getElementById("btnAdc").addEventListener("click", this.pegarServico)
     this.proForm =this.formBilder.group({
       nome:["", [Validators.required, Validators.maxLength(35), Validators.minLength(2)]],
       email:["", [Validators.required, Validators.email, Validators.maxLength(40)]],
@@ -49,35 +35,24 @@ export class FormPage implements OnInit {
         Validators.minLength(4), 
         Validators.maxLength(20), 
         Validators.required
-      ])],
-      data:["", Validators.required]
+      ])]
+      //servicos:["", Validators.required]
     })
     this.pegarTodos()
    
   }
-
   pegarTodos(){
     this.profissionalService.getAllProf().subscribe(
-      profDB => this.profissionais = profDB,
-      Erro => console.log(Erro)
-    )
+        profDB => this.profissionais = profDB,
+        Erro => console.log(Erro)
+        )
   }
 
-  add(){
-    //console.log("entrei aqui no add")
-    const novoProfissional = this.proForm.getRawValue() as profissional
-    console.log(novoProfissional)
-    this.profissionalService.AddProf(novoProfissional).subscribe(() =>{
-      this.arota.navigateByUrl("tabs/form"), 
-      error =>{
-        console.log(error),
-        this.proForm.reset()
-      }    
-    }
-    )
-    window.location.reload()
+  pegarServico(evento){
+
   }
 
+  
   deletar(id: string){
     
     this.profissionalService.delete(id).subscribe(() =>{
@@ -86,11 +61,25 @@ export class FormPage implements OnInit {
         console.log(error)
       }    
     }
-    )
-  }
+  )
+  alert("Ele foi pra casa do ... papai!!!")
+  window.location.reload()
+}
+
+//Variável de teste.
+msgNome = "";
+msgEmail = "";
+msgEndereco = "";
+msgPass = "";
+msgServicos = "";
+errorNome = false;
+errorEmail = false;
+errorEndereco = false;
+errorPass = false;
+erroServicos = false;
 
   logar(){  
-    let {nome, email, endereco, password} = this.proForm.controls;
+    let {nome, email, endereco, password, Servicos} = this.proForm.controls;
     if(!this.proForm.valid){
       if(!nome.valid){
         this.errorNome = true;
@@ -113,6 +102,16 @@ export class FormPage implements OnInit {
       if(!password.valid){
         this.errorPass = true;
         this.msgPass = "Insira uma senha entre 4 e 20 caracteres!"
+      }else{
+        this.errorPass = false;
+        this.msgPass = "";
+      }
+      if(!Servicos.valid){
+        this.erroServicos = true;
+        this.msgServicos = "Selecione pelo menos um serviço!!!"
+      }else{
+        this.erroServicos = false;
+        this.msgServicos = "";
       }
     }else{
       //alert("Cheguei aqui")
@@ -120,7 +119,21 @@ export class FormPage implements OnInit {
       this.add();
     }
   }
-  async apareceae(){
+  async add(){
+   //console.log("entrei aqui no add")
+   const novoProfissional = this.proForm.getRawValue() as profissional
+   console.log(novoProfissional)
+   this.profissionalService.AddProf(novoProfissional).subscribe(() =>
+     window.location.reload(), 
+     error =>{
+       console.log(error),
+       this.proForm.reset()
+     
+   })
+   this.proForm.reset();
+   
+  }
+  /*async apareceae(){
 
     console.log(this.completo)
     //let stDt = this.vlr.toISOString()
@@ -131,7 +144,7 @@ export class FormPage implements OnInit {
       buttons: ["OK"]
     })
     alert.present();
-  }
+  }*/
 
   /*pegar(pro: string){
     console.log(pro)
