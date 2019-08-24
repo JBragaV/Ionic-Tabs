@@ -3,6 +3,9 @@ export interface profissional{
     email: string,
     endereco: string,
     senha: string,
-    tipoServico: string,
-    data: number
+    tipoServico: Servicos[],
+}
+
+export interface Servicos{
+    nome: string
 }

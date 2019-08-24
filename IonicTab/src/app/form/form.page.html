@@ -4,7 +4,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content >
   <form [formGroup] = "proForm" (submit)="add()">
     <ion-item>
       <ion-label class="form" position="floating">Nome</ion-label>
@@ -23,8 +23,12 @@
       <ion-input type="password" formControlName="password" placeholder="Digite seu Senha" id="password" ></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label class="form" position="floating">Data de nascimento</ion-label>
-      <ion-datetime value="{{vlr | date: dd-MM-yyyy}}" displayFormat="DD MM YY" placeholder="Select Date"></ion-datetime>
+      <ion-label class="form" position="floating">Serviços</ion-label>
+      <ion-input type="text" (keyup)="servico = $event.target.value" placeholder="Digite os serviços separados por virgula" id="servico"></ion-input>
+      <ion-button (click)="pegarServico($event.target.value)" shape="round"><ion-icon slot="start" name="airplane"></ion-icon>Adcionar</ion-button>
+      <div *ngIf="true" id="svcTxt">
+        {{servico}}
+      </div>
     </ion-item>
     <ion-button type="submit" shape="round"><ion-icon slot="start" name="airplane"></ion-icon>Enviar</ion-button><ion-button (click)="apareceae()" shape="round"><ion-icon slot="end" name="star"></ion-icon>limpar</ion-button>
   </form>
