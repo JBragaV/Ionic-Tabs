@@ -1,45 +1,4 @@
 {
-  "cliente": [
-    {
-      "nome": "asdasd",
-      "email": "asd@asd.com",
-      "endereco": "sdfasdf",
-      "password": "sdsdsdf",
-      "data": "2018-08-21T11:57:04.237-03:00",
-      "id": 1
-    },
-    {
-      "nome": "Jocimar",
-      "email": "jocimar@jocimar.com",
-      "endereco": "Lá em casa",
-      "password": "123456789",
-      "data": "2016-08-21T11:58:30.505-03:00",
-      "id": 2
-    }
-  ],
-  "profissional": [
-    {
-      "nome": "Rafael comunista",
-      "email": "vermelho@comunismo.com",
-      "endereco": "Rua vermelha muito red",
-      "password": "comunismo",
-      "data": "",
-      "id": 1
-    },
-    {
-      "nome": "João Reta Mental",
-      "email": "doido@doidao.com",
-      "endereco": "Hospício mais perto de você",
-      "password": "123456789",
-      "data": "",
-      "id": 2
-    },
-    {
-      "nome": "Comunista",
-      "email": "vermelho@marteloefoice.com",
-      "endereco": "Vermelho",
-      "password": "123456789",
-      "id": 4
-    }
-  ]
+  "cliente": [],
+  "profissional": []
 }

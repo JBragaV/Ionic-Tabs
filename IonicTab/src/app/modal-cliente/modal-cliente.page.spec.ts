@@ -1,22 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Secao4Page } from './secao4.page';
+import { ModalClientePage } from './modal-cliente.page';
 
-describe('Secao4Page', () => {
-  let component: Secao4Page;
-  let fixture: ComponentFixture<Secao4Page>;
+describe('ModalClientePage', () => {
+  let component: ModalClientePage;
+  let fixture: ComponentFixture<ModalClientePage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ Secao4Page ],
+      declarations: [ ModalClientePage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(Secao4Page);
+    fixture = TestBed.createComponent(ModalClientePage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

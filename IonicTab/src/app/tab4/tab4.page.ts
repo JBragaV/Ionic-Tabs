@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ClienteService } from '../service/cliente.service';
 import { cliente } from '../models/cliente.models';
-import { getTemplateContent } from '@angular/core/src/sanitization/html_sanitizer';
-import { promise } from 'protractor';
-
+import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab4',
@@ -15,8 +13,11 @@ import { promise } from 'protractor';
 export class Tab4Page implements OnInit {
 
   public cliente: cliente[]
+  novoCliente: boolean = false
 
+  private servicos = ["Manutenção", "Design", "Coração", "Comunista", "Formatação"]
   public formulario:any;
+
   msgNome = "";
   msgEmail = "";
   msgEndereco = "";
@@ -27,12 +28,11 @@ export class Tab4Page implements OnInit {
   errorEndereco = false;
   errorPass = false;
   errorData = false;
-  
 
   constructor(private formBilder:FormBuilder, 
     private clienteService: ClienteService,
-    private arota: Router
-  ) { }
+    private nav: NavController,
+    private arota: Router) { }
   
   sobe(){
     document.querySelector("ion-content").scrollToTop(50) 
@@ -53,25 +53,43 @@ export class Tab4Page implements OnInit {
     this.pegarCliente();
   }
   
-  async add(){
-    //enviar para os serviços.
-    /*Resgatando os valores dos campos e fazendo i, cast(conversão)para o modelo)template Cliente*/
-    console.log(this.formulario.value)
-    const novoCliente = this.formulario.getRawValue() as cliente;
- 
-    this.clienteService.addCliente(novoCliente).subscribe(() => this.arota.navigateByUrl("tabs/tab4"),
-                                                          error => { console.log(error);  }
-                                                          )
-    this.formulario.reset();
-    await window.location.reload();
-  }
-
   pegarCliente(){
     this.clienteService.getAllCliente().subscribe(
       clienteDB => this.cliente = clienteDB,
       error => console.log(error)
     )
   }
+  
+  goForward(){
+    this.novoCliente = true
+    //this.nav.navigateForward("/tabs/modal-cliente")
+  }
+  deletar(id: string){
+    this.clienteService.deletarCliente(id).subscribe(() =>{
+      this.arota.navigateByUrl("tabs/tab4"), 
+      error =>{
+        console.log(error)
+      }    
+    }
+  )
+    alert("Ele foi pra casa do ... papai!!!")
+    window.location.reload()
+  }
+
+  async add(){
+    //enviar para os serviços.
+    /*Resgatando os valores dos campos e fazendo i, cast(conversão)para o modelo)template Cliente*/
+    console.log(this.formulario.value)
+    const novoCliente = this.formulario.getRawValue() as cliente;
+ 
+    this.clienteService.addCliente(novoCliente).subscribe(() => this.nav.navigateForward("/tabs/tab1"),
+                                                          error => { console.log(error);  }
+                                                          )
+    //await this.formulario.reset();
+    await window.location.reload();
+    this.novoCliente = false
+  }
+
   logar(){
     let {nome, email, endereco, password, data} = this.formulario.controls;
     if(!this.formulario.valid){
