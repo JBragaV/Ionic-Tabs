@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { ProfissionalService } from '../service/profissional.service';
 import { Router } from '@angular/router';
 import { profissional } from '../models/profissional.models';
@@ -15,7 +14,7 @@ export class FormPage implements OnInit {
   
   private profissionais: profissional[]
   
-  private novoProfissional: boolean = false
+  private novoProfissional: boolean
    
 
   constructor(private alertController: AlertController,
@@ -25,6 +24,7 @@ export class FormPage implements OnInit {
     
   proForm: FormGroup
   ngOnInit():void {
+    this.novoProfissional = false
     this.proForm =this.formBilder.group({
       nome:["", [Validators.required, Validators.maxLength(35), Validators.minLength(2)]],
       email:["", [Validators.required, Validators.email, Validators.maxLength(40)]],
@@ -53,8 +53,7 @@ export class FormPage implements OnInit {
         console.log(error)
       }    
     }
-  )
-    alert("Ele foi pra casa do ... papai!!!")
+  ) 
     window.location.reload()
   }
 
@@ -73,6 +72,7 @@ erroServicos = false;
   logar(){  
     let {nome, email, endereco, password} = this.proForm.controls;
     if(!this.proForm.valid){
+      alert("Deu pane em algum lugar aí")
       if(!nome.valid){
         this.errorNome = true;
         this.msgNome = "Insira um nome no campo acima!"
@@ -119,11 +119,16 @@ erroServicos = false;
        console.log(error),
        this.proForm.reset() 
    })
-   await this.proForm.reset();
-   this.novoProfissional = false
   }
 
   goForward(){
-    this.novoProfissional = true;
+    if(this.novoProfissional == false){
+      this.novoProfissional = true;
+    }else{
+      this.novoProfissional = false
+    }
+  }
+  atualizar(){
+    this.arota.navigateByUrl("/tabs/modal-profissional")
   }
 }

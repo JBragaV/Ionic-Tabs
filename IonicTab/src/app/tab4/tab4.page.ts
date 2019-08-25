@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class Tab4Page implements OnInit {
 
   public cliente: cliente[]
-  novoCliente: boolean = false
+  novoCliente: boolean
 
   private servicos = ["Manutenção", "Design", "Coração", "Comunista", "Formatação"]
   public formulario:any;
@@ -39,6 +39,7 @@ export class Tab4Page implements OnInit {
   }
 
   ngOnInit():void {
+    this.novoCliente = false
     this.formulario =this.formBilder.group({
       nome:["", [Validators.required, Validators.maxLength(35), Validators.minLength(2)]],
       email:["", [Validators.required, Validators.email, Validators.maxLength(40)]],
@@ -47,8 +48,8 @@ export class Tab4Page implements OnInit {
           Validators.minLength(4), 
           Validators.maxLength(20), 
           Validators.required
-        ])],
-      data:["", Validators.required]
+        ])]
+      //data:["", Validators.required]
     })
     this.pegarCliente();
   }
@@ -60,10 +61,15 @@ export class Tab4Page implements OnInit {
     )
   }
   
+  //"Função que serve para mostrar a tabela de cadastro na tela para o usuário."
   goForward(){
-    this.novoCliente = true
-    //this.nav.navigateForward("/tabs/modal-cliente")
+    if(this.novoCliente == false){
+        this.novoCliente = true
+    }else{
+      this.novoCliente = false
+    }
   }
+  //Deletar o dados selecionado
   deletar(id: string){
     this.clienteService.deletarCliente(id).subscribe(() =>{
       this.arota.navigateByUrl("tabs/tab4"), 
@@ -72,7 +78,6 @@ export class Tab4Page implements OnInit {
       }    
     }
   )
-    alert("Ele foi pra casa do ... papai!!!")
     window.location.reload()
   }
 
@@ -87,11 +92,11 @@ export class Tab4Page implements OnInit {
                                                           )
     //await this.formulario.reset();
     await window.location.reload();
-    this.novoCliente = false
+    
   }
 
   logar(){
-    let {nome, email, endereco, password, data} = this.formulario.controls;
+    let {nome, email, endereco, password} = this.formulario.controls;
     if(!this.formulario.valid){
       if(!nome.valid){
         this.errorNome = true;
@@ -115,10 +120,10 @@ export class Tab4Page implements OnInit {
         this.errorPass = true;
         this.msgPass = "Insira uma senha entre 4 e 20 caracteres!"
       }
-      if(!data.valid){
+      /*if(!data.valid){
         this.errorData = true;
         this.msgData = "Insira uma data!"
-      }
+      }*/
     }else{
       this.add();
     }

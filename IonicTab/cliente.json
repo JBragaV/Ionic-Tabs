@@ -1,4 +1,48 @@
 {
-  "cliente": [],
-  "profissional": []
+  "cliente": [
+    {
+      "nome": "Candida Nunes Caiado Braga",
+      "email": "candida@infolink.com",
+      "endereco": "Rua Acapu",
+      "password": "123456789",
+      "id": 1
+    },
+    {
+      "nome": "JOCIMAR CAIADO BRAGA",
+      "email": "jocimarcaiadobraga@gmail.com",
+      "endereco": "Rua Acapu 210",
+      "password": "123123",
+      "id": 2
+    }
+  ],
+  "profissional": [
+    {
+      "nome": "Jocimar ",
+      "email": "jocimarcaiadobraga@gmail.com",
+      "endereco": "Rua Acapu 210",
+      "password": "123456789",
+      "id": 1
+    },
+    {
+      "nome": "Manuela",
+      "email": "manu@linda.com",
+      "endereco": "Estrada da Posse",
+      "password": "123456798",
+      "id": 2
+    },
+    {
+      "nome": "Candida de Lá",
+      "email": "la@muitodela.com",
+      "endereco": "Galáxias Destruídas",
+      "password": "123456789",
+      "id": 3
+    },
+    {
+      "nome": "Jorge Luiz de Souza Braga",
+      "email": "jbraga@infolink.com",
+      "endereco": "Nosso lar",
+      "password": "123456789",
+      "id": 4
+    }
+  ]
 }

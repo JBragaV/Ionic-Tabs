@@ -52,6 +52,15 @@ const routes: Routes = [
         }
       ]
     },
+    {
+      path: 'modal-profissional',
+      children: [
+        {
+          path: '',
+          loadChildren: '../modal-profissional/modal-profissional.module#ModalProfissionalPageModule'
+        }
+      ]
+    },
       {
         path: '',
         redirectTo: '/tabs/tab1',

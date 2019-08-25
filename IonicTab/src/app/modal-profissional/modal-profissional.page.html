@@ -5,5 +5,30 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-button (click)="goForward()">Atualizar Cliente</ion-button>
+    <div >
+    <form  [formGroup] = "proForm" (submit)="logar()">
+      <ion-item>
+        <ion-label class="form" position="floating">Nome</ion-label>
+        <ion-input type="text" formControlName="nome" placeholder="Digite seu nome" id="nome"></ion-input>
+      </ion-item>
+      <h6 *ngIf="errorNome" class="error ion-text-center"> {{msgNome}}</h6>
+      <ion-item>
+        <ion-label class="form" position="floating">E-mail</ion-label>
+        <ion-input type="email" formControlName="email" placeholder="Digite seu email" id="email"></ion-input>
+      </ion-item>
+      <h6 *ngIf="errorEmail" class="error"> {{msgEmail}}</h6>
+      <ion-item>
+        <ion-label class="form" position="floating">Endereço</ion-label>
+        <ion-input type="text" formControlName="endereco" placeholder="Digite seu endereço" id="endereco"></ion-input>
+      </ion-item>
+      <h6 *ngIf="errorEndereco" class="error"> {{msgEndereco}}</h6>
+      <ion-item>
+        <ion-label class="form" position="floating">Senha</ion-label>
+        <ion-input type="password" formControlName="password" placeholder="Digite seu Senha" id="password" ></ion-input>
+      </ion-item>
+      <h6 *ngIf="errorPass" class="error"> {{msgPass}}</h6>
+      <ion-button type="submit" shape="round"><ion-icon slot="start" name="airplane"></ion-icon>Enviar</ion-button><ion-button (click)="apareceae()" shape="round"><ion-icon slot="end" name="star"></ion-icon>limpar</ion-button>
+    </form>
+  </div>
 </ion-content>
