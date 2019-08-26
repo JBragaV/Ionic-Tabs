@@ -22,11 +22,11 @@ export class ProfissionalService {
   }
 
   getAllProf(){//?email=${email}email: string
-    return this.http.get<profissional[]>(`${API_URL}/profissional`, httpOptions)
+    return this.http.get<profissional[]>(`${API_URL}/profissional?_sort=nome&_order=asc`, httpOptions)
   }
 
   getProfissional(email:string){
-    return this.http.get<profissional[]>(`${API_URL}/profissional/${email}`, httpOptions)
+    return this.http.get<profissional>(`${API_URL}/profissional/${email}`, httpOptions).toPromise()
   }
 
   upDateProf(prof: profissional){

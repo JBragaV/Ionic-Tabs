@@ -31,26 +31,51 @@
           <ion-button type="submit" shape="round" strong><ion-icon slot="start" name="airplane"></ion-icon>Enviar</ion-button><ion-button (click)="goBack()" type="submit" shape="round" strong><ion-icon slot="end" name="airplane"></ion-icon>Cancelar</ion-button>
         </form>
   </div>
-  <ion-item-sliding *ngFor="let teste of cliente">
+    <ion-item-sliding *ngFor="let teste of cliente">
       <ion-item-options side="start">
         <ion-item-option (click)="deletar(teste.id)" color="danger" expandable>
           Apagar
         </ion-item-option>
       </ion-item-options>
-  <ion-item>
-      <ion-thumbnail slot="start">
-        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-      </ion-thumbnail>
-      <ion-label>
-        <h1>{{teste.nome}}</h1>
-        <h3>{{teste.endereco}}</h3>
-        <h4>{{teste.email}}</h4>
-      </ion-label>
-    </ion-item>    
-    <ion-item-options side="end">
-        <ion-item-option color="tertiary" expandable>
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+        </ion-thumbnail>
+        <ion-label>
+          <h1>{{teste.nome}}</h1>
+          <h3>{{teste.endereco}}</h3>
+          <h4>{{teste.email}}</h4>
+        </ion-label>
+      </ion-item>    
+      <ion-item-options side="end">
+        <ion-item-option (click)="pegaCliente(teste.id)" color="tertiary" expandable>
           Atualizar
         </ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
+    <div *ngIf="atualizaCliente">
+        <form [formGroup] = "formulario" (submit) = 'logar()'>
+            <ion-item>
+              <ion-label class="form" position="floating">Nome</ion-label>
+              <ion-input formControlName="nome" type="text" value="oi" name="nome" id="nome" required></ion-input>
+            </ion-item>
+            <h6 *ngIf="errorNome" class="error ion-text-center"> {{msgNome}}</h6>
+            <ion-item>
+              <ion-label class="form" position="floating">E-mail</ion-label>
+              <ion-input type="text" formControlName="email" value="oi" placeholder="Digite seu email" name="email" id="email" required></ion-input>
+            </ion-item>
+            <h6 *ngIf="errorEmail" class="error"> {{msgEmail}}</h6>
+            <ion-item>
+              <ion-label class="form" position="floating">Endereço</ion-label>
+              <ion-input type="text" formControlName="endereco" value="oi" placeholder="Digite seu endereço" name="endereco" id="endereco" required></ion-input>
+            </ion-item>
+            <h6 *ngIf="errorEndereco" class="error"> {{msgEndereco}}</h6>
+            <ion-item>
+              <ion-label class="form" position="floating">Senha</ion-label>
+              <ion-input type="password" formControlName="password" value="oi" placeholder="Digite seu Senha" name="password" id="password" min="5" maxlenght="15" required></ion-input>
+            </ion-item>
+            <h6 *ngIf="errorPass" class="error"> {{msgPass}}</h6>
+            <ion-button type="submit" shape="round" strong><ion-icon slot="start" name="airplane"></ion-icon>Atualizar</ion-button><ion-button (click)="goBack()" type="submit" shape="round" strong><ion-icon slot="end" name="airplane"></ion-icon>Cancelar</ion-button>
+          </form>
+    </div>
 </ion-content>

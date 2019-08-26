@@ -11,23 +11,19 @@ import { profissional } from '../models/profissional.models';
 export class ModalProfissionalPage implements OnInit {
   id: string = "1"
   proForm: FormGroup
-  public profissional: profissional[]
+  public profissional: profissional
   constructor(private formBilder: FormBuilder, private profissionalService: ProfissionalService) { }
 
-  pegaProfissional(id:string){
-    this.profissionalService.getProfissional(id).subscribe(() =>
-          prof => this.profissional = prof,
-          error => console.log(error))
+  async pegaProfissional(id:string){
+    this.profissional = await this.profissionalService.getProfissional(id)
   }
   ngOnInit() {
-    //this.profissional = this.pegaProfissional(this.id)
-    //console.log(teste)
-    let nome = "Jocimar"
+    this.pegaProfissional(this.id)
     this.proForm =this.formBilder.group({
-      nome:[`${nome}`, [Validators.required, Validators.maxLength(35), Validators.minLength(2)]],
-      email:[`${nome}`, [Validators.required, Validators.email, Validators.maxLength(40)]],
-      endereco:[`${nome}`, [Validators.required, Validators.maxLength(100)]],
-      password:[`${nome}`, Validators.compose([
+      nome:[`${this.profissional.nome}`, [Validators.required, Validators.maxLength(35), Validators.minLength(2)]],
+      email:[`${this.profissional.email}`, [Validators.required, Validators.email, Validators.maxLength(40)]],
+      endereco:[`${this.profissional.endereco}`, [Validators.required, Validators.maxLength(100)]],
+      password:[`${this.profissional.senha}`, Validators.compose([
         Validators.minLength(4), 
         Validators.maxLength(20), 
         Validators.required

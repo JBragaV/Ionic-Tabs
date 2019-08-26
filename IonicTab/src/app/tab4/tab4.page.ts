@@ -13,7 +13,9 @@ import { Router } from '@angular/router';
 export class Tab4Page implements OnInit {
 
   public cliente: cliente[]
+  public clienteAtualizar: cliente
   novoCliente: boolean
+  atualizaCliente: boolean
 
   private servicos = ["Manutenção", "Design", "Coração", "Comunista", "Formatação"]
   public formulario:any;
@@ -40,6 +42,7 @@ export class Tab4Page implements OnInit {
 
   ngOnInit():void {
     this.novoCliente = false
+    this.atualizaCliente = false
     this.formulario =this.formBilder.group({
       nome:["", [Validators.required, Validators.maxLength(35), Validators.minLength(2)]],
       email:["", [Validators.required, Validators.email, Validators.maxLength(40)]],
@@ -59,6 +62,11 @@ export class Tab4Page implements OnInit {
       clienteDB => this.cliente = clienteDB,
       error => console.log(error)
     )
+  }
+  async pegaCliente(id:string){
+    this.clienteAtualizar = await this.clienteService.getCliente(id)
+    //console.log(this.clienteAtualizar.nome)
+    this.atualizaCliente = true;
   }
   
   //"Função que serve para mostrar a tabela de cadastro na tela para o usuário."

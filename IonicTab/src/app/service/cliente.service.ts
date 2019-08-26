@@ -13,6 +13,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
+
 // configurar manipulação de dados recebidos do formilario
 export class ClienteService {
 
@@ -26,13 +27,13 @@ export class ClienteService {
   }
 
   //pesquisar 1 cliente pelo email
-  getCliente(email:string){
-    return this.http.get<cliente[]>(`${API_URL}/cliente?emailCliente=${email}`, httpOptions)
+  getCliente(id:string){
+    return this.http.get<cliente>(`${API_URL}/cliente/${id}`, httpOptions).toPromise()
   }
 
   //Pegar todos os clientes do banco de dados
   getAllCliente(){
-    return this.http.get<cliente[]>(`${API_URL}/cliente`, httpOptions)
+    return this.http.get<cliente[]>(`${API_URL}/cliente?_sort=nome&_order=asc`, httpOptions)
   }
   
   //Atualizar os dados do Cliente
