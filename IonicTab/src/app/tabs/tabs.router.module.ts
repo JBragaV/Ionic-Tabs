@@ -44,11 +44,20 @@ const routes: Routes = [
       ]
     },
     {
-      path: 'peso',
+      path: 'modal-cliente',
       children: [
         {
           path: '',
-          loadChildren: '../peso/peso.module#PesoPageModule'
+          loadChildren: '../modal-cliente/modal-cliente.module#ModalClientePageModule'
+        }
+      ]
+    },
+    {
+      path: 'modal-profissional',
+      children: [
+        {
+          path: '',
+          loadChildren: '../modal-profissional/modal-profissional.module#ModalProfissionalPageModule'
         }
       ]
     },
